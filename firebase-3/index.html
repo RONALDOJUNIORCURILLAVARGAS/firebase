@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase -Notificaciones</title>
+</head>
+<body>
+    <p id="token"></p>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcZ-p5lFMCT-vfpgWvdQN4HGYSMAKgvxI",
+            authDomain: "unfv-mentoria-d9726.firebaseapp.com",
+            projectId: "unfv-mentoria-d9726",
+            storageBucket: "unfv-mentoria-d9726.appspot.com",
+            messagingSenderId: "238854800770",
+            appId: "1:238854800770:web:bf0a14a876aebb948cbb9b",
+            measurementId: "G-FM15JL1F2G"
+        };  
+        firebase.initializeApp(firebaseConfig);  
+        const messaging = firebase.messaging();
+        function initializeFirebaseMessaging() {
+            messaging.requestPermission()
+            .then(function () {
+                console.log("Permiso de Notificacion");
+                return messaging.getToken();
+            })
+            .then(function (token) {
+                console.log("Token : "+ token);
+                document.getElementById("token").innerHTML = token;
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            });
+
+        } 
+        messaging.onMessage(function (payload) {
+            console.log(payload);
+            const notificationOption = {
+                body:payload.notification.body,
+                icon:payload.notification.icon
+            };
+            if(Notification.permission ==="granted"){
+                var notification = new Notification(payload.notification.title, notificationOption);
+                notification.onclick = function (ev) {
+                    ev.preventDefault();
+                    window.open(payload.notification.click_action,'_blank');
+                    notification.close();
+                }
+            }
+        });
+
+        messaging.onTokenRefresh(function () {
+            messaging.getToken()
+                .then(function (newtoken) {
+                    console.log("Nuevo Token : "+ newtoken);
+                })    
+                .catch(function (reason) {
+                    console.log(reason);
+                })        
+        });
+
+        initializeFirebaseMessaging();
+
+    </script>
+</body>
+</html>

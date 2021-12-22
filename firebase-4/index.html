@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>Firebase - Autentificacion Google</title>
+  </head>
+  <body class="text-center">
+    <h1>Firebase Autentificación con Google</h1><br>
+    <h1 class="h3 mb-3" id="user_name">Acceso</h1>
+    <img class="mb-4" id="user_image" alt="Foto del Usuario" width="100" height="100"  style="display: none;"/>
+    <button class="w-100 btn btn-lg btn-primary" id="login_btn" onclick="loginWithGoogle()">Iniciar Sesión con Google</button>
+    <button class="w-100 btn btn-lg btn-danger" id="logout_btn" style="display: none;" onclick="logout()">Salir</button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
